@@ -1,0 +1,16 @@
+[
+  {
+    "id": "p101",
+    "name": "Running Shoes",
+    "category": "Footwear",
+    "price": 2499,
+    "description": "Lightweight running shoes for daily jogging"
+  },
+  {
+    "id": "p102",
+    "name": "Casual Sneakers",
+    "category": "Footwear",
+    "price": 1999,
+    "description": "Comfortable sneakers for daily wear"
+  }
+]
