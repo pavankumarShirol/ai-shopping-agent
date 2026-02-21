@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const users = require("../data/users.json");
 
 /**
  * @swagger
  * tags:
  *   name: Authentication
- *   description: User authentication APIs
+ *   description: Authentication APIs
  */
 
 /**
@@ -13,8 +14,8 @@ const router = express.Router();
  * /auth/signin:
  *   post:
  *     tags: [Authentication]
- *     summary: Sign in user
- *     description: Sign in using email and password and receive a sessionId
+ *     summary: User login
+ *     description: Login using email and password (no session yet)
  *     requestBody:
  *       required: true
  *       content:
@@ -39,22 +40,28 @@ const router = express.Router();
  *             schema:
  *               type: object
  *               properties:
- *                 sessionId:
+ *                 userId:
  *                   type: string
- *                   example: sess_abc123
+ *                 email:
+ *                   type: string
  *       401:
  *         description: Invalid credentials
  */
-
 router.post("/signin", (req, res) => {
   const { email, password } = req.body;
 
-  // TEMP LOGIC (no DB yet)
-  if (email === "user@gmail.com" && password === "123456") {
-    return res.json({ sessionId: "sess_demo_123" });
+  const user = users.find(
+    u => u.email === email && u.password === password
+  );
+
+  if (!user) {
+    return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  res.status(401).json({ message: "Invalid credentials" });
+  res.json({
+    userId: user.id,
+    email: user.email
+  });
 });
 
 module.exports = router;

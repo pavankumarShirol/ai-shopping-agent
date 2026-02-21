@@ -1,0 +1,23 @@
+[
+  {
+    "id": "card1",
+    "userId": "u101",
+    "type": "VISA",
+    "last4": "4242",
+    "expiryMonth": "12/26"
+  },
+  {
+    "id": "card2",
+    "userId": "u101",
+    "type": "MASTERCARD",
+    "last4": "8888",
+    "expiryMonth": "12/26"
+  },
+  {
+    "id": "card_1771690133520",
+    "userId": "u101",
+    "type": "VISA",
+    "last4": "4242",
+    "expiryMonth": "12/26"
+  }
+]

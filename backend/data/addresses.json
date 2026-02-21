@@ -1,0 +1,42 @@
+[
+  {
+    "id": "addr1",
+    "userId": "u101",
+    "label": "Home",
+    "area": "Indiranagar",
+    "city": "Bangalore",
+    "pincode": "560001"
+  },
+  {
+    "id": "addr2",
+    "userId": "u101",
+    "label": "Office",
+    "area": "Indiranagar",
+    "city": "Bangalore",
+    "pincode": "560048"
+  },
+  {
+    "id": "addr_1771689783639",
+    "userId": "u101",
+    "label": "Home",
+    "area": "Indiranagar",
+    "city": "Bangalore",
+    "pincode": "560001"
+  },
+  {
+    "id": "addr_1771689788073",
+    "userId": "u101",
+    "label": "Home",
+    "area": "Indiranagar",
+    "city": "Bangalore",
+    "pincode": "560001"
+  },
+  {
+    "id": "addr_1771689805545",
+    "userId": "u101",
+    "label": "Home",
+    "area": "Indiranagar",
+    "city": "Bangalore",
+    "pincode": "560001"
+  }
+]

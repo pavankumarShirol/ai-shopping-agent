@@ -41,7 +41,7 @@ async def main():
         name="Shopping Agent",
     )
 
-    # ✅ stateless_http goes HERE
+    #  stateless_http goes HERE
     await mcp.run_http_async(
         host="localhost",
         port=4001,

@@ -1,6 +1,6 @@
 {
 	"servers": {
-		"my-mcp-server-90741a17": {
+		"shopping-agent-mcp": {
 			"url": "http://localhost:4001/mcp",
 			"type": "http"
 		}
