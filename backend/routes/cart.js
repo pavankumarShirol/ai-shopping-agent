@@ -1,16 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");          // ✅ ADD THIS
+const fs = require("fs");
 const path = require("path");
+
+// File paths
 const cartsFile = path.join(__dirname, "../data/carts.json");
 const productsFile = path.join(__dirname, "../data/products.json");
 
-let carts = require("../data/carts.json");
-const products = require("../data/products.json");
+// ---------- Helper functions ----------
 
 const readCarts = () => {
   const data = fs.readFileSync(cartsFile, "utf-8");
   return data ? JSON.parse(data) : [];
+};
+
+const writeCarts = (data) => {
+  fs.writeFileSync(cartsFile, JSON.stringify(data, null, 2));
 };
 
 const readProducts = () => {
@@ -31,7 +36,7 @@ const readProducts = () => {
  *   post:
  *     tags: [Cart]
  *     summary: Add product to cart
- *     description: Add a product to user's cart using userId
+ *     description: Add a product to user's cart
  *     requestBody:
  *       required: true
  *       content:
@@ -59,12 +64,18 @@ const readProducts = () => {
 router.post("/add", (req, res) => {
   const { userId, productId, quantity } = req.body;
 
+  const products = readProducts();
   const productExists = products.find(p => p.id === productId);
+
   if (!productExists) {
     return res.status(404).json({ message: "Product not found" });
   }
 
+  const carts = readCarts();
   carts.push({ userId, productId, quantity });
+
+  writeCarts(carts);
+
   res.json({ message: "Added to cart" });
 });
 
@@ -73,7 +84,7 @@ router.post("/add", (req, res) => {
  * /cart/{userId}:
  *   get:
  *     tags: [Cart]
- *     summary: Get user's cart
+ *     summary: Get user's cart (raw)
  *     parameters:
  *       - in: path
  *         name: userId
@@ -86,7 +97,10 @@ router.post("/add", (req, res) => {
  */
 router.get("/:userId", (req, res) => {
   const { userId } = req.params;
+
+  const carts = readCarts();
   const userCart = carts.filter(c => c.userId === userId);
+
   res.json(userCart);
 });
 
@@ -96,7 +110,7 @@ router.get("/:userId", (req, res) => {
  *   get:
  *     tags: [Cart]
  *     summary: Get cart summary with prices and totals
- *     description: Returns a derived view of cart with product details and total amount
+ *     description: Returns derived cart view with product details and total amount
  *     parameters:
  *       - in: path
  *         name: userId
@@ -133,8 +147,8 @@ router.get("/:userId", (req, res) => {
 router.get("/summary/:userId", (req, res) => {
   const { userId } = req.params;
 
-  const carts = readCarts();        // from carts.json
-  const products = readProducts();  // from products.json
+  const carts = readCarts();
+  const products = readProducts();
 
   const userCart = carts.filter(c => c.userId === userId);
 
