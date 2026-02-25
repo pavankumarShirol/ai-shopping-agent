@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "userId": "u101",
+    "productId": "p101",
+    "quantity": 1
+  },
+  {
+    "userId": "u101",
+    "productId": "p101",
+    "quantity": 1
+  },
+  {
+    "userId": "u101",
+    "productId": "p101",
+    "quantity": 1
+  }
+]

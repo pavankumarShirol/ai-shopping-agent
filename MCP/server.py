@@ -1,26 +1,3 @@
-# import json
-# import httpx
-# from fastmcp import FastMCP
-# # from fastmcp.server.openapi 
-
-# client = httpx.AsyncClient(base_url="http://localhost:4000/api-docs.json")
-
-# mcp = FastMCP.from_openapi(
-#   openapi_spec="http://localhost:4000/api-docs.json",
-#   client=client,
-#   name="Shopping Agent",
-#   stateless_http=True,
-# )
-
-# if __name__ == "__main__":
-#   mcp.run(transport="streamable-http", host="localhost", port=4001)
-
-
-
-
-
-
-
 
 # 
 import asyncio

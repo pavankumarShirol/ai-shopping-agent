@@ -1,0 +1,7 @@
+langgraph
+langchain
+python-dotenv
+langchain-groq
+langchain_mcp_adapters
+langchain[google-genai]
+langchain[aws]
