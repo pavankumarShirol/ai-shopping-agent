@@ -1,6 +1,7 @@
 
 # 
 import asyncio
+import os
 import httpx
 from fastmcp import FastMCP
 
@@ -27,11 +28,14 @@ async def main():
         client=api_client,
         name="Shopping Agent",
     )
+    
+    # 🔑 CRITICAL PART
+    port = int(os.environ.get("PORT", 4001))
 
     #  stateless_http goes HERE
     await mcp.run_http_async(
-        host="localhost",
-        port=4001,
+        host="0.0.0.0",
+        port=port,
         stateless_http=True,
     )
 
