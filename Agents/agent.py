@@ -1,79 +1,152 @@
-
-import asyncio
 import os
-from dotenv import load_dotenv
 from pathlib import Path
+from dotenv import load_dotenv
+from collections import defaultdict
 
-from langchain.agents import create_agent
-from langchain_mcp_adapters.client import MultiServerMCPClient
-
+from langchain.agents import create_agent, AgentState
 from langchain.agents.middleware import wrap_tool_call
 from langchain.messages import ToolMessage
+from langchain_mcp_adapters.client import MultiServerMCPClient
 
-from langchain.agents import AgentState
 
-# Load .env file explicitly
-env_path = Path(__file__).parent / '.env'
+# --------------------------------------------------
+# ENV
+# --------------------------------------------------
+
+env_path = Path(__file__).parent / ".env"
 load_dotenv(dotenv_path=env_path)
 
-# Verify API key is loaded
-if not os.getenv('GROQ_API_KEY'):
-    raise ValueError("GROQ_API_KEY not found in .env file")
-  
+if not os.getenv("GROQ_API_KEY"):
+    raise RuntimeError("GROQ_API_KEY not found in .env")
+
+
+# --------------------------------------------------
+# SESSION STORE (PER CONVERSATION)
+# --------------------------------------------------
+
+SESSION_STORE: dict[str, list] = defaultdict(list)
+
+
+# --------------------------------------------------
+# Middleware
+# --------------------------------------------------
+
 @wrap_tool_call
 async def handle_tool_errors(request, handler):
-    """Handle tool execution errors with custom messages."""
     try:
         return await handler(request)
     except Exception as e:
-        # Return a custom error message to the model
         return ToolMessage(
-            content=f"Tool error: Please check your input and try again. ({str(e)})",
+            content=f"Tool error: {str(e)}",
             tool_call_id=request.tool_call["id"]
         )
-        
+
+
+# --------------------------------------------------
+# Agent State
+# --------------------------------------------------
+
 class CustomState(AgentState):
     user_preferences: dict
 
-async def main():
+
+# --------------------------------------------------
+# MCP Config
+# --------------------------------------------------
+
+BASE_URL = "https://ai-shopping-agent-mcp-server.onrender.com/mcp"
+
+
+# --------------------------------------------------
+# Agent Factory (Singleton)
+# --------------------------------------------------
+
+_agent_instance = None
+
+
+async def get_agent():
+    global _agent_instance
+
+    if _agent_instance is not None:
+        return _agent_instance
+
+    print("🔄 Initializing shopping agent...")
+
     client = MultiServerMCPClient(
         {
             "shopping-agent": {
-                "url": "http://localhost:4001/mcp", "transport": "streamable-http"
-                }
+                "url": BASE_URL,
+                "transport": "streamable-http",
             }
-        )
+        }
+    )
+
     tools = await client.get_tools()
-    
-    print("Shopping Agent Chat (type 'exit' to quit)")
-    print("-" * 40)
+
     agent = create_agent(
         model="groq:llama-3.1-8b-instant",
         tools=tools,
         system_prompt="""
-        you are a shopping agent for our store THON store.
-        - you first analyse which all tools you have access and tell user that what you can do for them.
-        - based on user input you decide which tool to use and what parameters to pass to the tool. remember for some tools need user_id use id as u101 as of now.
-        - chekout process has to proceed like this first you have to call the Get_all_addresses_for_a_user tool and show the addresses information(show full infomation as received from response) to user and ask which address they want to use for delivery then you have to call the Get_all_payment_methods_for_a_user(show full infomation as received from response) tool and show the payment methods details to user and ask which payment method they want to use for payment and then you have to call the Place_order tool with the address and payment method details to complete the order.
-        - show the response from the tool in the markdown easily readable format.
-        """, 
+you are a shopping agent for our store ShopHub store.
+
+- Explain what you can help with (from user perspective only)
+- Decide tools and parameters automatically
+- user_id is always u101
+- Checkout flow:
+  1. Get addresses → ask user
+  2. Select address
+  3. Get payment methods → ask user + CVV
+  4. Select payment
+  5. Place order
+- Render all tool responses in clean markdown
+""",
         middleware=[handle_tool_errors],
-        state_schema=CustomState
-    )  
+        state_schema=CustomState,
+    )
 
-    history = []
-    while True:
-        user_input = input("\nYou: ").strip()
-        if user_input.lower() == 'exit':
-            print("Goodbye!")
-            break
-        if not user_input:
-            continue
-        history.append({"role": "user", "content": user_input})
-        print("Agent (streaming):")
-        async for chunk in agent.astream({"messages": history}, stream_mode="updates"):
-            for step, data in chunk.items():
-                print(f"step: {step}")
-                print(f"content: {data['messages'][-1].content_blocks}")
+    _agent_instance = agent
+    print("✅ Agent initialized")
+    return agent
 
-asyncio.run(main())
+
+# --------------------------------------------------
+# Streaming with Session Memory
+# --------------------------------------------------
+
+async def stream_agent_response(user_input: str, session_id: str):
+    agent = await get_agent()
+
+    history = SESSION_STORE[session_id]
+
+    # Add user message to memory
+    history.append({
+        "role": "user",
+        "content": user_input
+    })
+
+    final_assistant_message = None
+
+    async for chunk in agent.astream(
+        {"messages": history},
+        stream_mode="updates"
+    ):
+        for step, data in chunk.items():
+            msg = data["messages"][-1]
+            final_assistant_message = msg
+
+            yield {
+                "step": step,
+                "type": msg.type,
+                "content": (
+                    msg.content_blocks
+                    if hasattr(msg, "content_blocks")
+                    else msg.content
+                ),
+            }
+
+    # Persist assistant response after stream ends
+    if final_assistant_message:
+        history.append({
+            "role": "assistant",
+            "content": final_assistant_message.content
+        })
