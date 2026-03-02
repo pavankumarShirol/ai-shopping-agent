@@ -1,27 +1,61 @@
 import { useState } from "react";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+import Profile from "./pages/Profile";
+import { api } from "./api/client";
 
 export default function App() {
   const [userId, setUserId] = useState(null);
-  const [page, setPage] = useState("products");
+  const [page, setPage] = useState("login");
   const [orderId, setOrderId] = useState(null);
 
-  const BASE_URL = "http://localhost:4000";
+  if (page === "login") {
+    return (
+      <Login
+        onLogin={(id) => {
+          setUserId(id);
+          setPage("products");
+        }}
+        onSwitchToRegister={() => setPage("register")}
+      />
+    );
+  }
 
-  if (!userId) {
-    return <Login onLogin={setUserId} />;
+  if (page === "register") {
+    return (
+      <Register
+        onRegister={(id) => {
+          setUserId(id);
+          setPage("products");
+        }}
+        onSwitchToLogin={() => setPage("login")}
+      />
+    );
   }
 
   if (page === "products") {
     return (
-      <>
-        <Products userId={userId} />
-        <button onClick={() => setPage("cart")}>Go to Cart</button>
-      </>
+      <Products
+        userId={userId}
+        onNavigate={(destination) => setPage(destination)}
+      />
+    );
+  }
+
+  if (page === "profile") {
+    return (
+      <Profile
+        userId={userId}
+        onNavigate={(destination) => setPage(destination)}
+        onLogout={() => {
+          setUserId(null);
+          setPage("login");
+        }}
+      />
     );
   }
 
@@ -30,6 +64,7 @@ export default function App() {
       <Cart
         userId={userId}
         onNext={() => setPage("checkout")}
+        onBack={() => setPage("products")}
       />
     );
   }
@@ -39,17 +74,11 @@ export default function App() {
       <Checkout
         userId={userId}
         onPlaceOrder={async () => {
-          // 🔴 FIX: STORE fetch RESPONSE in res
-          const res = await fetch(`${BASE_URL}/orders/place`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId })
-          });
-
-          const data = await res.json();   // ✅ res now exists
-          setOrderId(data.orderId);        // ✅ save orderId
-          setPage("success");              // ✅ navigate
+          const data = await api.placeOrder(userId);
+          setOrderId(data.orderId);
+          setPage("success");
         }}
+        onBack={() => setPage("cart")}
       />
     );
   }
