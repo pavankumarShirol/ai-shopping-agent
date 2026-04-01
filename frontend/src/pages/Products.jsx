@@ -63,6 +63,13 @@ export default function Products({ userId, onNavigate }) {
                 <ShoppingCart className="w-5 h-5" />
                 <span>Cart</span>
               </button>
+              <button
+                onClick={() => onNavigate("orders")}
+                className="flex items-center space-x-2 bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-all font-medium"
+              >
+                <Package className="w-5 h-5" />
+                <span>Orders</span>
+              </button>
             </div>
           </div>
         </div>
@@ -100,7 +107,7 @@ export default function Products({ userId, onNavigate }) {
                 className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
                 <div className="aspect-square bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                  <Package className="w-24 h-24 text-blue-400 group-hover:scale-110 transition-transform" />
+                  <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5">
                   <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">

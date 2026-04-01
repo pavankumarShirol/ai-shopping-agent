@@ -1,17 +1,12 @@
 [
   {
     "userId": "u101",
-    "productId": "p101",
+    "productId": "p403",
     "quantity": 1
   },
   {
     "userId": "u101",
-    "productId": "p101",
-    "quantity": 1
-  },
-  {
-    "userId": "u101",
-    "productId": "p101",
+    "productId": "p401",
     "quantity": 1
   }
 ]

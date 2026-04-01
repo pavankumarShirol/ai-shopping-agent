@@ -1,4 +1,5 @@
-const BASE_URL = "https://ai-shopping-agent-el0o.onrender.com";
+// const BASE_URL = "https://ai-shopping-agent-el0o.onrender.com";
+const BASE_URL = "http://127.0.0.1:4000";
 
 export const api = {
   register: async (email, password, name) => {
@@ -96,8 +97,15 @@ export const api = {
       body: JSON.stringify({ userId })
     });
     return res.json();
+  },
+
+  getOrders: async (userId) => {
+    const res = await fetch(`${BASE_URL}/orders/${userId}`);
+    return res.json();
   }
 };
+
+
 
 // client.js
 export const streamChat = async (message, sessionId, onChunk) => {

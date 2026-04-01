@@ -37,17 +37,17 @@ export default function ChatWidget() {
           prev.map((conv) =>
             conv.id === conversationId
               ? {
-                  ...conv,
-                  steps: [
-                    ...conv.steps,
-                    {
-                      id: crypto.randomUUID(),
-                      step: data.step,
-                      content: data.content || [],
-                      toolName,
-                    },
-                  ],
-                }
+                ...conv,
+                steps: [
+                  ...conv.steps,
+                  {
+                    id: crypto.randomUUID(),
+                    step: data.step,
+                    content: data.content || [],
+                    toolName,
+                  },
+                ],
+              }
               : conv
           )
         );
@@ -78,7 +78,18 @@ export default function ChatWidget() {
             thinking… (calling <b>{toolCall.name}</b>)
           </div>
         ) : (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              img: ({ node, ...props }) => (
+                <img
+                  {...props}
+                  className="max-w-full h-auto rounded-lg shadow-md my-3"
+                  style={{ maxHeight: "200px", objectFit: "cover" }}
+                />
+              )
+            }}
+          >
             {textBlock?.text || "_thinking…_"}
           </ReactMarkdown>
         )}
@@ -125,7 +136,7 @@ export default function ChatWidget() {
       {/* Overlay */}
       {open && (
         <div className="fixed inset-0 z-50 backdrop-blur-sm bg-black/30 flex items-center justify-center">
-          <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col h-[80vh]">
+          <div className="bg-white w-full max-w-4xl rounded-2xl shadow-2xl flex flex-col h-[85vh]">
 
             {/* Header */}
             <div className="flex justify-between items-center px-6 py-4 border-b">

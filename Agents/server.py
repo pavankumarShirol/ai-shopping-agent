@@ -34,6 +34,7 @@ def read_root():
 @app.post("/chat/stream")
 async def chat_stream(req: AgentRequest):
 
+    print(f"Received message: {req.message} (session: {req.session_id})")
     async def generator():
         async for chunk in stream_agent_response(
             req.message,

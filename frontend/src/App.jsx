@@ -7,6 +7,7 @@ import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 import Profile from "./pages/Profile";
 import { api } from "./api/client";
+import Orders from "./pages/Orders";
 
 export default function App() {
   const [userId, setUserId] = useState(null);
@@ -79,6 +80,15 @@ export default function App() {
           setPage("success");
         }}
         onBack={() => setPage("cart")}
+      />
+    );
+  }
+
+  if (page === "orders") {
+    return (
+      <Orders
+        userId={userId}
+        onBack={() => setPage("products")}
       />
     );
   }

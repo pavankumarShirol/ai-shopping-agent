@@ -110,4 +110,35 @@ router.post("/place", (req, res) => {
   res.json(order);
 });
 
+/**
+ * @swagger
+ * /orders/{userId}:
+ *   get:
+ *     tags: [Orders]
+ *     summary: Get all orders for a user
+ *     description: Returns full stored order history
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: u101
+ *     responses:
+ *       200:
+ *         description: List of user orders
+ */
+router.get("/:userId", (req, res) => {
+  const { userId } = req.params;
+
+  const ordersFile = path.join(__dirname, "../data/orders.json");
+
+  const ordersData = fs.readFileSync(ordersFile, "utf-8");
+  const orders = ordersData ? JSON.parse(ordersData) : [];
+
+  const userOrders = orders.filter(o => o.userId === userId);
+
+  res.json(userOrders);
+});
+
 module.exports = router;

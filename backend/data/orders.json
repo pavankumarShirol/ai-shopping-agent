@@ -1,17 +1,140 @@
 [
   {
-    "orderId": "ord_1771690910319",
+    "orderId": "ord_1772560328503",
     "userId": "u101",
     "items": [
       {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 2
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
+      }
+    ],
+    "address": {
+      "id": "addr1",
+      "userId": "u101",
+      "label": "Home",
+      "area": "Indiranagar",
+      "city": "Bangalore",
+      "pincode": "560001"
+    },
+    "payment": {
+      "id": "card1",
+      "userId": "u101",
+      "type": "VISA",
+      "last4": "4242",
+      "expiryMonth": "12/26"
+    },
+    "totalAmount": 4999,
+    "createdAt": "2026-03-03T17:52:08.503Z"
+  },
+  {
+    "orderId": "ord_1774288033819",
+    "userId": "u101",
+    "items": [
+      {
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
       },
       {
-        "productId": "p102",
-        "name": "Casual Sneakers",
+        "productId": "p403",
+        "name": "Men's Bomber Jacket",
+        "price": 3999,
+        "quantity": 1
+      },
+      {
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
+      },
+      {
+        "productId": "p403",
+        "name": "Men's Bomber Jacket",
+        "price": 3999,
+        "quantity": 1
+      },
+      {
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
+      }
+    ],
+    "address": {
+      "id": "addr1",
+      "userId": "u101",
+      "label": "Home",
+      "area": "Indiranagar",
+      "city": "Bangalore",
+      "pincode": "560001"
+    },
+    "payment": {
+      "id": "card1",
+      "userId": "u101",
+      "type": "VISA",
+      "last4": "4242",
+      "expiryMonth": "12/26"
+    },
+    "totalAmount": 22995,
+    "createdAt": "2026-03-23T17:47:13.819Z"
+  },
+  {
+    "orderId": "ord_1774288414386",
+    "userId": "u101",
+    "items": [
+      {
+        "productId": "p402",
+        "name": "Men's Denim Jacket",
+        "price": 3499,
+        "quantity": 1
+      },
+      {
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
+      }
+    ],
+    "address": {
+      "id": "addr1",
+      "userId": "u101",
+      "label": "Home",
+      "area": "Indiranagar",
+      "city": "Bangalore",
+      "pincode": "560001"
+    },
+    "payment": {
+      "id": "card1",
+      "userId": "u101",
+      "type": "VISA",
+      "last4": "4242",
+      "expiryMonth": "12/26"
+    },
+    "totalAmount": 8498,
+    "createdAt": "2026-03-23T17:53:34.386Z"
+  },
+  {
+    "orderId": "ord_1774292181899",
+    "userId": "u101",
+    "items": [
+      {
+        "productId": "p402",
+        "name": "Men's Denim Jacket",
+        "price": 999,
+        "quantity": 1
+      },
+      {
+        "productId": "p401",
+        "name": "Men's Leather Jacket",
+        "price": 4999,
+        "quantity": 1
+      },
+      {
+        "productId": "p403",
+        "name": "Men's Bomber Jacket",
         "price": 1999,
         "quantity": 1
       }
@@ -31,351 +154,7 @@
       "last4": "4242",
       "expiryMonth": "12/26"
     },
-    "totalAmount": 6997,
-    "createdAt": "2026-02-21T16:21:50.319Z"
-  },
-  {
-    "orderId": "ord_1771696528068",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 2
-      },
-      {
-        "productId": "p102",
-        "name": "Casual Sneakers",
-        "price": 1999,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 6997,
-    "createdAt": "2026-02-21T17:55:28.068Z"
-  },
-  {
-    "orderId": "ord_1771701139884",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 2499,
-    "createdAt": "2026-02-21T19:12:19.884Z"
-  },
-  {
-    "orderId": "ord_1771701438986",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 2499,
-    "createdAt": "2026-02-21T19:17:18.986Z"
-  },
-  {
-    "orderId": "ord_1771701625901",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 2499,
-    "createdAt": "2026-02-21T19:20:25.901Z"
-  },
-  {
-    "orderId": "ord_1771702194988",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 2499,
-    "createdAt": "2026-02-21T19:29:54.988Z"
-  },
-  {
-    "orderId": "ord_1771702440703",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 2499,
-    "createdAt": "2026-02-21T19:34:00.703Z"
-  },
-  {
-    "orderId": "ord_1771952233689",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 4998,
-    "createdAt": "2026-02-24T16:57:13.689Z"
-  },
-  {
-    "orderId": "ord_1771954482219",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p102",
-        "name": "Casual Sneakers",
-        "price": 1999,
-        "quantity": 1
-      },
-      {
-        "productId": "p102",
-        "name": "Casual Sneakers",
-        "price": 1999,
-        "quantity": 2
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 15993,
-    "createdAt": "2026-02-24T17:34:42.219Z"
-  },
-  {
-    "orderId": "ord_1771955990441",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      },
-      {
-        "productId": "p102",
-        "name": "Casual Sneakers",
-        "price": 1999,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 4498,
-    "createdAt": "2026-02-24T17:59:50.441Z"
-  },
-  {
-    "orderId": "ord_1771957982374",
-    "userId": "u101",
-    "items": [
-      {
-        "productId": "p102",
-        "name": "Casual Sneakers",
-        "price": 1999,
-        "quantity": 1
-      },
-      {
-        "productId": "p101",
-        "name": "Running Shoes",
-        "price": 2499,
-        "quantity": 1
-      }
-    ],
-    "address": {
-      "id": "addr1",
-      "userId": "u101",
-      "label": "Home",
-      "area": "Indiranagar",
-      "city": "Bangalore",
-      "pincode": "560001"
-    },
-    "payment": {
-      "id": "card1",
-      "userId": "u101",
-      "type": "VISA",
-      "last4": "4242",
-      "expiryMonth": "12/26"
-    },
-    "totalAmount": 4498,
-    "createdAt": "2026-02-24T18:33:02.374Z"
+    "totalAmount": 7997,
+    "createdAt": "2026-03-23T18:56:21.901Z"
   }
 ]
