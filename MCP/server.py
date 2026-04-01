@@ -5,8 +5,8 @@ import os
 import httpx
 from fastmcp import FastMCP
 
-# BACKEND_BASE_URL = "https://ai-shopping-agent-el0o.onrender.com"
-BACKEND_BASE_URL = "http://127.0.0.1:4000"
+BACKEND_BASE_URL = "https://ai-shopping-agent-el0o.onrender.com"
+# BACKEND_BASE_URL = "http://127.0.0.1:4000"
 
 async def main():
     
